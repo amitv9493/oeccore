@@ -1,0 +1,8 @@
+{% extends 'admin/login.html' %}
+
+{% block content %}
+    {{block.super}}
+    <div class="submit-row">
+        <a href=" {% url 'registration' %} " target = "_blank" class='btn btn danger'> Register </a>
+      </div>
+{% endblock content %}

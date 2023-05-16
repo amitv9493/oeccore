@@ -1,0 +1,42 @@
+{% extends 'admin/index.html' %}
+
+{% load static %}
+
+<!--{% load notifications_tags %}-->
+{% block head %}
+{{block.super}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+<style>
+    body{
+        font-family: 'Libre Franklin', sans-serif;
+        font-family: 'Montserrat', sans-serif;
+
+    }
+
+</style>
+{% endblock head  %}
+
+
+{% block header %}
+    {{block.super}}
+    <div class="right">
+        <a target="_blank" href= {% url 'notification' %} >
+            <el-dropdown>
+                <el-button v-waves>
+                    <i class="fas fa-bell"></i>
+                    {% if request.user.is_staff  %} {% notifications_unread %}<i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button> {% endif %}
+                    
+                {% for notification in user.notifications.unread %}
+                    <el-dropdown-menu slot="dropdown">
+                        <div>&nbsp{{notification.description}}&nbsp</div>
+                    </el-dropdown-menu>
+                {% endfor %}
+            </el-dropdown>
+        </a>
+    </div>
+
+{% endblock header %}

@@ -1,0 +1,135 @@
+.max_w-100 {
+  max-width: 100px;
+}
+html body {
+  font-size: 0.875rem;
+}
+.list-style_disc {
+  list-style: disc;
+}
+.list-style_disc li {
+  list-style: disc;
+}
+table p {
+  margin-bottom: 5px;
+  line-height: normal;
+  font-size: 14px;
+}
+
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(
+    .input-group-btn
+  ) {
+  width: 100%;
+}
+.tab-content {
+  height: auto !important;
+}
+
+.bootstrap-select {
+  position: relative !important;
+}
+
+.bootstrap-select .dropdown-menu {
+  right: 0 !important;
+  bottom: 0 !important;
+  /* transform: none !important; */
+}
+
+div.dropdown-menu.open {
+  max-height: none !important;
+  overflow: hidden;
+}
+ul.dropdown-menu.inner {
+  /* max-height: 260px !important; */
+  overflow-y: auto;
+}
+.bootstrap-select .dropdown-menu li a span.text {
+  white-space: initial !important;
+}
+
+.errorMsg {
+  color: red;
+}
+
+.sw > .tab-content,
+form,
+.container-fluid,
+.card,
+.card-body {
+  overflow: visible;
+}
+
+/* for drag and drop */
+.files input {
+  outline: 2px dashed #92b0b3;
+  outline-offset: -10px;
+  -webkit-transition: outline-offset 0.15s ease-in-out,
+    background-color 0.15s linear;
+  transition: outline-offset 0.15s ease-in-out, background-color 0.15s linear;
+  padding: 120px 0px 85px 35%;
+  text-align: center !important;
+  margin: 0;
+  width: 100% !important;
+}
+.files input:focus {
+  outline: 2px dashed #92b0b3;
+  outline-offset: -10px;
+  -webkit-transition: outline-offset 0.15s ease-in-out,
+    background-color 0.15s linear;
+  transition: outline-offset 0.15s ease-in-out, background-color 0.15s linear;
+  border: 1px solid #92b0b3;
+}
+.files {
+  position: relative;
+}
+.files:after {
+  pointer-events: none;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 50px;
+  right: 0;
+  height: 56px;
+  content: "";
+  background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+  display: block;
+  margin: 0 auto;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.color input {
+  background-color: #f1f1f1;
+}
+.files:before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  right: 0;
+  height: 57px;
+  content: " or drag it here. ";
+  display: block;
+  margin: 0 auto;
+  color: #363062;
+  font-weight: 600;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+/* drag and drop completed */
+.hide {
+  display: none !important;
+}
+
+.appImg {
+  text-align: center;
+  width: auto;
+  max-height: 300px;
+  display: block;
+  margin: auto;
+}
+
+.tab-pane.fade.active.show .col-sm-6 {
+  margin: auto;
+}

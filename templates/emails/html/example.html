@@ -1,0 +1,91 @@
+{% load post_office %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HTML 5 Boilerplate</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Muli"
+      rel="stylesheet"
+    />
+    <style>
+      .dp {
+        border-radius: 28px;
+        height: 3cm;
+        width: 3cm;
+        margin-left: 38%;
+        background: #ffffff;
+        /* box-shadow:  20px 20px 40px #cccccc,
+                    -20px -20px 40px #ffffff; */
+      }
+
+      .dp img {
+        margin-top: -16px;
+        margin-bottom: auto;
+        max-width: 100%;
+        max-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .card p {
+        font-family: Muli, sans-serif;
+        font-weight: 500;
+        color: rgb(255, 255, 255) !important;
+        
+      }
+
+      .card {
+        color: rgb(255, 255, 255);
+        width: 470px;
+        height: 740px;
+        margin: auto;
+        padding-top: 0.7cm;
+        padding-left: 1cm;
+        padding-right: 1cm;
+        padding-bottom: 1cm;
+
+        border-radius: 30px;
+        background: #212121;
+        box-shadow: 20px 20px 40px #cccccc, -20px -20px 40px #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="dp">
+        <img src= "{% inline_image 'emails/images/logo.png' %}"  alt="Italian Trulli" />
+      </div>
+
+      <p>Subject: New Enquiry Submitted</p>
+      <p>Hi,</p>
+      <br />
+
+      <p>
+        We wanted to let you know that a new enquiry has been submitted by
+        {{added_by}} through our CRM. The details of the enquiry are as follows:
+      </p>
+      <br />
+      <p>Student name: {{student_name}}</p>
+      <p>Phone : {{phone}}</p>
+      <p>Email : {{email}}</p>
+      <p>Course intreseted: {{course}}</p>
+      <p>Intake intreseted: {{intake}}</p>
+      <br />
+      <p>
+        We will make sure to follow up with the customer as soon as possible. If
+        you have any questions or concerns about this enquiry, please let us
+        know.
+      </p>
+      <br />
+      <p>Best regards,</p>
+      <p>FlyurDream</p>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

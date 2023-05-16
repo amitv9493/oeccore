@@ -1,0 +1,15 @@
+
+{% extends 'admin/base.html' %}
+{% block title %}All notifications for {{user}}{% endblock title %}
+
+{% block content %}
+
+    {% for notification in notifications %}
+    
+    <li>{{notification.description}}</li>
+
+    {% endfor %}
+{% endblock content %}
+
+</body>
+</html>

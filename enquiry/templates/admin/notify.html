@@ -1,0 +1,29 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}
+  Your Notifications
+{% endblock title %}
+
+{% block content %}
+{% load notifications_tags %}
+
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+      <ul>
+        {% for notification in qs%}
+              
+                <li>{{notification.description}} <a href= {% url 'mark-read' notification.id %} > Mark as Read </a></li>
+              
+            {%empty%}
+            <h2>No Unread Notification</h2>
+
+        {% endfor %}
+      </ul>
+    </div>
+    <a target = "_blank" href= {% url 'see-all-notification' %} >Click here to See all Notifications</a>
+
+  </body>
+</html>
+
+
+{% endblock content %}
