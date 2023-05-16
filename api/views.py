@@ -456,7 +456,6 @@ class UniversityViewset(ModelViewSet):
 #     permission_classes = [ IsAdminUser]
 #     authentication_classes= [ JWTAuthentication]
 
-from master.models import UniversityRequirements
 
 '''============================================================================'''
 from rest_framework import generics
@@ -485,39 +484,39 @@ class university_filter(filters.FilterSet):
     # english_requirement = filters.ModelMultipleChoiceFilter(field_name='english_requirement',queryset = UniversityRequirements.objects.all())
     # (field_name='english_requirement')
 
-    class Meta:
-        model = UniversityRequirements
-        fields = "__all__"
+    # class Meta:
+    #     model = UniversityRequirements
+    #     fields = "__all__"
 
 
-class University_requirement_view(generics.ListAPIView):
-    queryset = UniversityRequirements.objects.all()
-    serializer_class = UniversityRequirements_Serializer
+# class University_requirement_view(generics.ListAPIView):
+#     queryset = UniversityRequirements.objects.all()
+#     serializer_class = UniversityRequirements_Serializer
     
-    # permission_classes = [DjangoModelPermissions, IsAdminUser]
-    # authentication_classes= [ JWTAuthentication]
-    filter_backends =[DjangoFilterBackend]
-    # filterset_fields ={
-    #     'english_waiver':['gte', 'lte'],
-    #     'academic_requirement':['gte', 'lte'],
-    #     'ielts_score':['gte', 'lte'],
-    #     'tofel':['gte', 'lte'],
-    #     'pte':['gte', 'lte'],
-    #     'gap':['gte', 'lte'],
-    #     'english_requirement':['exact'],        
+#     # permission_classes = [DjangoModelPermissions, IsAdminUser]
+#     # authentication_classes= [ JWTAuthentication]
+#     filter_backends =[DjangoFilterBackend]
+#     # filterset_fields ={
+#     #     'english_waiver':['gte', 'lte'],
+#     #     'academic_requirement':['gte', 'lte'],
+#     #     'ielts_score':['gte', 'lte'],
+#     #     'tofel':['gte', 'lte'],
+#     #     'pte':['gte', 'lte'],
+#     #     'gap':['gte', 'lte'],
+#     #     'english_requirement':['exact'],        
         
         
-    # }
-    filterset_fields = [
-        'english_requirement',
-        'board_not_eligible',
-        'placement_option',
-        'dependency_acceptance',
-        'gap',
-    ]
+#     # }
+#     filterset_fields = [
+#         'english_requirement',
+#         'board_not_eligible',
+#         'placement_option',
+#         'dependency_acceptance',
+#         'gap',
+#     ]
     
-    pagination_class = CustomPagination
-    filterset_class = university_filter
+#     pagination_class = CustomPagination
+#     filterset_class = university_filter
 
 '''=================================================================================='''
 

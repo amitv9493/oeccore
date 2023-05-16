@@ -146,6 +146,81 @@ class UniversityListAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display_links = ['univ_name']
     list_per_page = 10
 
+    fieldsets = (
+        (
+            "University Information",
+            {
+                "fields":(
+                    'univ_name',
+                    'country',
+                    'univ_desc',
+                    'univ_logo',
+                    'univ_phone',
+                    'univ_email',
+                    'univ_website',
+                    'assigned_users',
+                    'active',
+                    
+                )
+            }
+        ),
+        (
+            "General Information",
+            {
+                "fields": (
+                    'course_level',
+                    'location',
+                    'campus',
+                    'intake',
+                    'general_documents',
+                    'mandatory_docs',
+                    
+                    "finance_for_CAS",
+                    "credibility_interview",
+                    
+                    "offer_timeline",
+                    'payment_option',
+                    "deposit_for_CAS",
+                    "scholarship",
+                    "appointment_of_agent",
+                    "change_of_agent",
+                    "amount",
+                    "app_fees",
+                    
+                    "dependent_acceptance",
+                    
+                    "accept_case_from_high_risk",
+                    "general_visa_refusal",
+                    "student_visa_refusal",
+                    'english_test',
+                    "web_link",
+                ),
+            },
+        ),
+        (
+            "Academic Requirement",
+            {
+                "fields": (
+                    "english_waiver",
+                    "english_requirement",
+                    "academic_requirement",
+                    
+                    "ielts_score",
+                    "tofel",
+                    "pte",
+                    
+                    "others",
+                    "board_not_eligible",
+                    "gap",
+                    
+                    "placement_option",
+                    "dependency_acceptance",
+                ),
+            },
+        ),
+    )
+
+
 
 admin.site.register(University, UniversityListAdmin)
 

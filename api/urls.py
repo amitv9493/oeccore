@@ -16,7 +16,7 @@ urlpatterns = [
         path("recent-actions", recentactions_view.as_view()),
         path("broadcast-message", Broadcast_view.as_view(), name = 'broadcast'),
 
-        path('filter-university/', University_requirement_view.as_view(), name = 'filter-enquiry'),
+        # path('filter-university/', University_requirement_view.as_view(), name = 'filter-enquiry'),
 
     path('add-enquiry/',add_enquiry.as_view(), name='add-enquiry'),
     path('update-enquiry/<int:pk>/', update_enquiry.as_view(), name = 'update-enquiry'),

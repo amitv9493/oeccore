@@ -148,63 +148,6 @@ class boardNotEligible(models.Model):
     def __str__(self):
         return self.board_name
     
-class UniversityRequirements(models.Model):
-    
-    class appointmemt_choices(models.TextChoices):
-        YES = 'YES'
-        NO = 'NO'
-        UNIVERSITY_DISCREATION = 'University Discretion'
-
-    class yes_no_only(models.TextChoices):
-        YES = 'YES'
-        NO = 'NO'
-    '''GENERAL INFORMATION'''
-
-    university_name = models.ForeignKey("enquiry.University", verbose_name=_("University Name"), on_delete=models.CASCADE)
-    course_level = models.ForeignKey(course_levels, on_delete=models.SET_NULL, null=True)
-
-    location = models.ManyToManyField(Location, verbose_name=_("Locations"))
-    campus = models.ManyToManyField(Campus)
-    intake = models.ManyToManyField(intake)
-    general_documents = models.ManyToManyField(documents_required, related_name="university_requirements")
-    mandatory_docs = models.ManyToManyField(documents_required, verbose_name=_("Mandatory Document"), related_name="university_requirement")
-
-    finance_for_CAS = models.CharField(_("Finance for CAS"), default=True, blank=True, choices=yes_no_only.choices, max_length=10)
-    credibility_interview = models.CharField(_("Credibility Interview"), default=True, blank=True, choices=yes_no_only.choices, max_length=10)
-    
-    offer_timeline = models.CharField(_("Offer time line"), max_length=100)
-    payment_option = models.ManyToManyField(Payment_Option, verbose_name=_("Payment Option"))
-    deposit_for_CAS = models.CharField(_("Deposit for CAS"), max_length=50)
-    scholarship = models.CharField(_("Scholarship"), max_length=100)
-    appointment_of_agent = models.CharField(_("Appointment of agent"), max_length=50, choices= appointmemt_choices.choices)
-    change_of_agent = models.CharField(_("Change of agent"), max_length=50, choices= appointmemt_choices.choices)
-    amount = models.CharField(max_length=50, blank=True)
-    app_fees = models.CharField(_("Application Fees"), max_length=50, null=True, blank=True)
-
-    dependent_acceptance = models.CharField(_("Dependent Acceptance"), max_length=100)
-
-    accept_case_from_high_risk = models.CharField(_("Accept Case from High Risk"), max_length=50)
-    general_visa_refusal = models.CharField(_("General Visa Refusal type"), max_length=100)
-    student_visa_refusal = models.CharField(_("Student Visa Refusal type"), max_length=100)
-    english_test = models.ManyToManyField( EnglishTest,verbose_name=_("English Test Accepted"))
-    web_link = models.URLField(default=None, null=True)
-
-    '''ACADEMIC REQURIEMENTS'''
-    
-    english_waiver =  models.PositiveIntegerField(_("English Waiver-(Percent)"))
-    english_requirement = models.ManyToManyField(english_requirments,)
-    academic_requirement = models.PositiveIntegerField(_(" Academic Requirement General(Percent)")) 
-    
-    ielts_score = models.DecimalField(_("IELTS"), validators= [validate_negatives],decimal_places=1,max_digits=3 )
-    tofel = models.DecimalField(_("TOFEL"), validators= [validate_negatives],decimal_places=1,max_digits=3)
-    pte = models.DecimalField(_("PTE"), validators= [validate_negatives],decimal_places=1,max_digits=3)
-    
-    others = models.CharField(_("Others"), max_length=50)
-    board_not_eligible = models.ManyToManyField(boardNotEligible, verbose_name=_("Region or Boards not Eligible for English Waiver"),)
-    gap = models.PositiveIntegerField(_("Education GAP (In years)"), )
-
-    placement_option = models.CharField(_("Placement Option "), max_length=50, choices=yes_no_only.choices, default=yes_no_only.NO)
-    dependency_acceptance = models.CharField(_("Dependent Acceptance"), max_length=50, choices=yes_no_only.choices, default=yes_no_only.NO)
 
 
 

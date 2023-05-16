@@ -104,100 +104,99 @@ class boardNotEligibleAdmin(admin.ModelAdmin):
     list_display = ('id', 'board_name')
 
 
-@admin.register(UniversityRequirements)
-class UniversityRequirementsAdmin(ImportExportMixin, admin.ModelAdmin):
-    radio_fields = {"finance_for_CAS": admin.HORIZONTAL}
-    lsit_display_links = ['university_name']
-    list_display = (
-    'university_name',
-    'course_level',
-    'finance_for_CAS',
-    'credibility_interview',
-    'offer_timeline',
-    'deposit_for_CAS',
-    'scholarship',
-    'appointment_of_agent',
-    'change_of_agent',
-    'amount',
-    'app_fees',
-    'dependent_acceptance',
-    'accept_case_from_high_risk',
-    'general_visa_refusal',
-    'student_visa_refusal',
-    'web_link',
-    'english_waiver',
-    'academic_requirement',
-    'ielts_score',
-    'tofel',
-    'pte',
-    'others',
-    'gap',
-    'placement_option',
-    'dependency_acceptance',
-)
+# class UniversityRequirementsAdmin(ImportExportMixin, admin.ModelAdmin):
+#     radio_fields = {"finance_for_CAS": admin.HORIZONTAL}
+#     lsit_display_links = ['university_name']
+#     list_display = (
+#     'university_name',
+#     'course_level',
+#     'finance_for_CAS',
+#     'credibility_interview',
+#     'offer_timeline',
+#     'deposit_for_CAS',
+#     'scholarship',
+#     'appointment_of_agent',
+#     'change_of_agent',
+#     'amount',
+#     'app_fees',
+#     'dependent_acceptance',
+#     'accept_case_from_high_risk',
+#     'general_visa_refusal',
+#     'student_visa_refusal',
+#     'web_link',
+#     'english_waiver',
+#     'academic_requirement',
+#     'ielts_score',
+#     'tofel',
+#     'pte',
+#     'others',
+#     'gap',
+#     'placement_option',
+#     'dependency_acceptance',
+# )
  
-    list_filter = (
-        "university_name",
-        "finance_for_CAS",
-        "credibility_interview",
-    )
+#     list_filter = (
+#         "university_name",
+#         "finance_for_CAS",
+#         "credibility_interview",
+#     )
 
 
-    fieldsets = (
-        (
-            "General Information",
-            {
-                "fields": (
-                    "university_name",
-                    'course_level',
-                    'location',
-                    'campus',
-                    'intake',
-                    'general_documents',
-                    'mandatory_docs',
+#     fieldsets = (
+#         (
+#             "General Information",
+#             {
+#                 "fields": (
+#                     "university_name",
+#                     'course_level',
+#                     'location',
+#                     'campus',
+#                     'intake',
+#                     'general_documents',
+#                     'mandatory_docs',
                     
-                    "finance_for_CAS",
-                    "credibility_interview",
+#                     "finance_for_CAS",
+#                     "credibility_interview",
                     
-                    "offer_timeline",
-                    'payment_option',
-                    "deposit_for_CAS",
-                    "scholarship",
-                    "appointment_of_agent",
-                    "change_of_agent",
-                    "amount",
-                    "app_fees",
+#                     "offer_timeline",
+#                     'payment_option',
+#                     "deposit_for_CAS",
+#                     "scholarship",
+#                     "appointment_of_agent",
+#                     "change_of_agent",
+#                     "amount",
+#                     "app_fees",
                     
-                    "dependent_acceptance",
+#                     "dependent_acceptance",
                     
-                    "accept_case_from_high_risk",
-                    "general_visa_refusal",
-                    "student_visa_refusal",
-                    'english_test',
-                    "web_link",
-                ),
-            },
-        ),
-        (
-            "Academic Requirement",
-            {
-                "fields": (
-                    "english_waiver",
-                    "english_requirement",
-                    "academic_requirement",
+#                     "accept_case_from_high_risk",
+#                     "general_visa_refusal",
+#                     "student_visa_refusal",
+#                     'english_test',
+#                     "web_link",
+#                 ),
+#             },
+#         ),
+#         (
+#             "Academic Requirement",
+#             {
+#                 "fields": (
+#                     "english_waiver",
+#                     "english_requirement",
+#                     "academic_requirement",
                     
-                    "ielts_score",
-                    "tofel",
-                    "pte",
+#                     "ielts_score",
+#                     "tofel",
+#                     "pte",
                     
-                    "others",
-                    "board_not_eligible",
-                    "gap",
+#                     "others",
+#                     "board_not_eligible",
+#                     "gap",
                     
-                    "placement_option",
-                    "dependency_acceptance",
-                ),
-            },
-        ),
-    )
+#                     "placement_option",
+#                     "dependency_acceptance",
+#                 ),
+#             },
+#         ),
+#     )
 

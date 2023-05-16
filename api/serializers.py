@@ -153,14 +153,7 @@ class enquiry_add_serializer(serializers.ModelSerializer):
     #     return data
 # =======================================================================================
 # UNIVERSITY REQUIREMENT SERIALZER
-from master.models import UniversityRequirements
 
-class UniversityRequirements_Serializer(serializers.ModelSerializer):
-    university_name = uni_serializer()
-    class Meta:
-        model = UniversityRequirements
-        fields = "__all__"
-        depth = 1
 
 
 # =======================================================================================

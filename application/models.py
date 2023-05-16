@@ -1,5 +1,4 @@
 from django.db import models
-from notifications.base.models import AbstractNotification
 from enquiry.models import enquiry
 from master.models import application_status
 from django.db.models.signals import post_save
