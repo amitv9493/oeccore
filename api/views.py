@@ -144,7 +144,7 @@ class course_view_only(ListAPIView):
     # queryset = Course.objects.exclude(university__active = False).exclude(Active=False)
     queryset = Course.objects.filter(university__active = True, Active=True)
     serializer_class = course_serializer_view_only
-    # pagination_class = CustomPagination
+    pagination_class = CustomPagination
 
 class university_view(ListAPIView):
     permission_classes = [DjangoModelPermissions, IsAdminUser]

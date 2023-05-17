@@ -347,7 +347,7 @@ USE_L10N = True
 
 USE_TZ = False
 
-FILE_UPLOAD_TEMP_DIR = os.path.join(BASE_DIR,'temp')
+# FILE_UPLOAD_TEMP_DIR = os.path.join(BASE_DIR,'temp')
 
 
 
