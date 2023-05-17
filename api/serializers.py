@@ -59,16 +59,21 @@ class countryserializer(serializers.ModelSerializer):
     class Meta:
         model = Country
         fields = "__all__"
+        
+'''=================================================================================================
+
+                            UNIVERSITY RELATED SERIALIZERS
+'''
 
 class UniversitySerializer(serializers.ModelSerializer):
     class Meta:
         model = University
         fields = "__all__"
-        
+
 class intakeserializer(serializers.ModelSerializer):
     class Meta:
         model = intake
-        fields= '__all__'
+        fields = "__all__"
 
 
 class CourseSerializers(serializers.ModelSerializer):

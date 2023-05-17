@@ -8,9 +8,9 @@ router = DefaultRouter()
 router.register('applications',applicationViewset, basename='application')
 router.register('enquiries',enquiryViewset, basename='enquiry')
 router.register('courses',courseViewset, basename='course')
-router.register('universities',UniversityViewset, basename='university')
 
 urlpatterns = [
+        path("get/universities/",UniversityListView.as_view()),
         path("enq/postcomment/",EnquiryCommentCreateView.as_view()),
         path("enq/getcomment/", EnquiryCommentView.as_view(), name="comment"),
         path("recent-actions", recentactions_view.as_view()),

@@ -2,6 +2,9 @@ from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.views import APIView
 from django.db.models import Q
+from rest_framework import generics
+from django_filters import rest_framework as filters
+
 from rest_framework.filters import OrderingFilter
 # Create your views here.
 
@@ -424,44 +427,6 @@ class courseViewset(ModelViewSet):
     ).filter(university__active =True)
 
 
-
-class UniversityViewset(ModelViewSet):
-    permission_classes = [DjangoModelPermissions, IsAdminUser]
-    authentication_classes= [ JWTAuthentication]
-    serializer_class = UniversitySerializer
-    filter_backends =[DjangoFilterBackend]
-    filterset_fields =['univ_name','country',]
-    pagination_class = CustomPagination
-    queryset = University.objects.all()
-
-
-# class NotificationView(generics.ListAPIView):
-#     permission_classes = [ IsAdminUser]
-#     authentication_classes= [ JWTAuthentication]
-#     serializer_class = notificationSerializer
-#     queryset = Notification.objects.all()
-#     pagination_class = CustomPagination
-
-#     def get_queryset(self):
-#         qs= super().get_queryset()
-#         print(self.request.user.id)
-#         qs1 =qs.filter(recipient=self.request.user.id).unread()
-#         print(qs1.count())
-#         # print(qs1)
-#         return qs1
-
-# class NotificationMarkReadView(generics.UpdateAPIView):
-#     queryset = Notification.objects.all()
-#     serializer_class = notificationMarkreadSerializer
-#     permission_classes = [ IsAdminUser]
-#     authentication_classes= [ JWTAuthentication]
-
-
-'''============================================================================'''
-from rest_framework import generics
-from django_filters import rest_framework as filters
-
-
 class university_filter(filters.FilterSet):
     ielts_max = filters.NumberFilter(field_name="ielts_score", lookup_expr='gte')
     ielts_min = filters.NumberFilter(field_name="ielts_score", lookup_expr='lte')
@@ -480,13 +445,55 @@ class university_filter(filters.FilterSet):
     
     gap_max = filters.NumberFilter(field_name='gap',lookup_expr='gte')
     gap_min =filters.NumberFilter(field_name='gap',lookup_expr='lte')
-
+    
     # english_requirement = filters.ModelMultipleChoiceFilter(field_name='english_requirement',queryset = UniversityRequirements.objects.all())
     # (field_name='english_requirement')
 
-    # class Meta:
-    #     model = UniversityRequirements
-    #     fields = "__all__"
+    class Meta:
+        model = University
+        fields = ['ielts_score',
+                  'tofel',
+                  'pte',
+                  'gap',
+                  'academic_requirement',
+                  'english_waiver',
+                  
+                  ]
+
+
+class UniversityListView(generics.ListAPIView):
+    # permission_classes = [DjangoModelPermissions, IsAdminUser]
+    # authentication_classes= [ JWTAuthentication]
+    serializer_class = UniversitySerializer
+    filter_backends =[DjangoFilterBackend]
+    filterset_fields =['univ_name','country',]
+    pagination_class = CustomPagination
+    filterset_class = university_filter
+    queryset = University.objects.all()
+    serializer_class.Meta.fields = ['id',
+                                    'univ_name', 
+                                    # 'univ_logo',
+                                    # 'univ_email',
+                                    # 'univ_website',
+                                    # 'active',
+                                    # 'univ_phone', 
+                                    # 'country',
+                                    ]
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(active=True)
+    
+class UniversityCreateView(generics.CreateAPIView):
+    serializer_class = UniversitySerializer
+    filter_backends =[DjangoFilterBackend]
+    filterset_fields =['univ_name','country',]
+    pagination_class = CustomPagination
+    queryset = University.objects.all()
+    
+
+'''============================================================================'''
+
 
 
 # class University_requirement_view(generics.ListAPIView):
@@ -655,14 +662,14 @@ class EnquiryCommentView(generics.ListAPIView):
 
 class EnquiryCommentCreateView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated]
 
     serializer_class = CreateCommentSerializer
     filter_backends =[DjangoFilterBackend, SearchFilter,OrderingFilter]
     
-    def get_serializer(self, *args, **kwargs):
-        data = kwargs.get('data')
-        if data:
-            # Set the default value for the required field
-            data['content_type'] = 17
-            return super().get_serializer(*args, **kwargs)
+    def create(self, request, *args, **kwargs):
+        request.data['content_type'] = 17  # Set the default value for the required field
+        return super().create(request, *args, **kwargs)
+    
+    def perform_create(self, CreateCommentSerializer):
+        CreateCommentSerializer.save(user = self.request.user)

@@ -36,7 +36,7 @@ class EnquiryList(admin.ModelAdmin):
     exclude = ['added_by']
     list_display_links = ['student_name']
     list_per_page = 10
-    search_fields = ['university_interested__univ_name', ]
+    search_fields = ['university_interested__univ_name','student_name' ]
 
 
     autocomplete_fields = [
