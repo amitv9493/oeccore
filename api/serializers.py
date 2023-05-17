@@ -23,12 +23,13 @@ class enquiry_view_serializer(serializers.ModelSerializer):
 class uni_serializer(serializers.ModelSerializer):
     class Meta:
         model = University
-        fields = ('id','univ_name',)
+        fields = ('id','univ_name','ielts_score', "pte", "tofel",)
     
 class course_serializer_view_only(serializers.ModelSerializer):
+    university = uni_serializer()
     class Meta:
         model = Course
-        fields = ("id", "course_name", )
+        fields = ("id", "course_name","university","intake")
 
 class applicationStatusserializer(serializers.ModelSerializer):
     class Meta:

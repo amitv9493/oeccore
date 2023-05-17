@@ -190,12 +190,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
 STATIC_ROOT='/home/flyuxxwc/public_html/static'
+MEDIA_ROOT = '/home/flyuxxwc/public_html/media'
 STATICFILES_DIRS = [BASE_DIR / "static",
 os.path.join(BASE_DIR,"front", 'static')]
 
-MEDIA_ROOT = '/home/flyuxxwc/public_html/media'
+STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -204,16 +204,6 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-'''SIMPLE UI SETTINGS'''
-SIMPLEUI_ANALYSIS = False
-SIMPLEUI_DEFAULT_THEME = 'admin.lte.css'
-SIMPLEUI_DEFAULT_ICON = False
-SIMPLEUI_HOME_INFO = False
-SIMPLEUI_ICON = {
-    'System_Manage': 'fab fa-apple',
-    'Universities': "fa-solid fa-building-columns",
-}
 
 USE_DJANGO_JQUERY = True
 
@@ -233,9 +223,9 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 REST_FRAMEWORK = {
     # "DEFAULT_AUTHENTICATION_CLASSES":[
-    # #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
     
-    # # ],
+    # ],
     
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',

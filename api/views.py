@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from django.db.models import Q
 from rest_framework import generics
 from django_filters import rest_framework as filters
-
+from django.core.cache import cache
 from rest_framework.filters import OrderingFilter
 # Create your views here.
 
@@ -101,14 +101,46 @@ from rest_framework.filters import SearchFilter
 from rest_framework.generics import ListAPIView
 
 class course_view_only(ListAPIView):
-    permission_classes = [DjangoModelPermissions, IsAdminUser]
-    authentication_classes= [ JWTAuthentication]
-    filter_backends = [DjangoFilterBackend]
+    # permission_classes = [DjangoModelPermissions, IsAdminUser]
+    # authentication_classes= [ JWTAuthentication]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    search_fields = ["^course_name"]
     filterset_fields = [
         'university',
         'course_levels',
+        'intake',
         
     ]
+    
+    def get_queryset(self):
+        
+        # qs = super().get_queryset().select_related('university')
+        # qs = qs.prefetch_related('intake')
+        ielts_score = self.request.query_params.get('ielts_score')
+        pte_score = self.request.query_params.get('pte_score')
+        tofel_score = self.request.query_params.get('tofel_score')
+        intake = self.request.query_params.get('intake')
+
+        query = Q()  # Initialize an empty Q object
+
+        if intake:
+            query |= Q(intake=intake)
+        if ielts_score:
+            query |= Q(university__ielts_score__lte=ielts_score)
+        if pte_score:
+            query |= Q(university__pte__lte=pte_score)
+        if tofel_score:
+            query |= Q(university__tofel__lte=tofel_score)
+
+        cache_key = 'course_queryset'
+        queryset = cache.get(cache_key)
+        if queryset is None:
+            queryset = super().get_queryset().select_related('university').prefetch_related('intake')
+            cache.set(cache_key, queryset)
+            queryset = queryset.filter(query)
+        return queryset
+            
+
     # queryset = Course.objects.exclude(university__active = False).exclude(Active=False)
     queryset = Course.objects.filter(university__active = True, Active=True)
     serializer_class = course_serializer_view_only

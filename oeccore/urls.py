@@ -18,7 +18,7 @@ from application.views import mypdf, applicationDetail, registrationview
 # router1.register('application',views.applicationViewset, basename="application")
 
 
-urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [path("select2/", include("django_select2.urls")),
+urlpatterns = [path("select2/", include("django_select2.urls")),
 
 # Notification URLS 
 # path('notification/',notification, name='notification' ),
@@ -88,3 +88,7 @@ path("enquiry.html",TemplateView.as_view(template_name="enquiry.html")),
 admin.site.site_header = "FLYURDREAM CRM"
 admin.site.site_title = "FLYURDREAM CRM"
 admin.site.index_title = "FLYURDREAM CRM"
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
