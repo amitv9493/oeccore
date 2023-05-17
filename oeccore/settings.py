@@ -151,10 +151,10 @@ JAZZMIN_UI_TWEAKS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': '/home/ubuntu/db.sqlite3',
     }
 }
-
+# BASE_DIR / 'db.sqlite3',
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
